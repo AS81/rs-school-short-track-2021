@@ -17,8 +17,40 @@
  * }
  */
 
-function removeKFromList(/* l, k */) {
-  throw new Error('Not implemented');
+function removeKFromList(l, k) {
+  const listWithoutK = {};
+
+  class CreateNextNode {
+    constructor(val) {
+      this.value = val;
+      this.next = null;
+    }
+  }
+
+  function listWithoutKAddNode(obj, listValue) {
+    if (obj.next) {
+      listWithoutKAddNode(obj.next, listValue);
+    } else {
+      obj.next = new CreateNextNode(listValue); // eslint-disable-line no-param-reassign
+    }
+  }
+
+  function removeKFromListCheck(list, elem) {
+    if (list.value !== elem) {
+      if (listWithoutK.value) {
+        listWithoutKAddNode(listWithoutK, list.value);
+      } else {
+        listWithoutK.value = list.value;
+        listWithoutK.next = null;
+      }
+    }
+    if (list.next) {
+      removeKFromListCheck(list.next, elem);
+    }
+  }
+
+  removeKFromListCheck(l, k);
+  return listWithoutK;
 }
 
 module.exports = removeKFromList;
