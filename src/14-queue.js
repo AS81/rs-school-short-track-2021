@@ -11,11 +11,14 @@
  *
  */
 
+const ListNode = require('../extensions/list-node');
+
 class Queue {
   constructor() {
     this.queue = {};
     this.head = 0;
     this.tail = 0;
+    ListNode();
   }
 
   get size() {
