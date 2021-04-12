@@ -12,16 +12,34 @@
  */
 
 class Queue {
-  get size() {
-    throw new Error('Not implemented');
+  constructor() {
+    this.queue = {};
+    this.head = 0;
+    this.tail = 0;
   }
 
-  enqueue(/* element */) {
-    throw new Error('Not implemented');
+  get size() {
+    return this.tail;
+  }
+
+  enqueue(element) {
+    this.queue[this.tail++] = element;
   }
 
   dequeue() {
-    throw new Error('Not implemented');
+    let elemFirst;
+
+    if (this.tail === this.head) {
+      return undefined;
+    }
+
+    if (this.tail !== this.head) {
+      elemFirst = this.queue[this.head];
+      delete this.queue[this.head++];
+      this.tail--;
+      return elemFirst;
+    }
+    return elemFirst;
   }
 }
 
